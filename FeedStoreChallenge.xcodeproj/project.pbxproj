@@ -20,6 +20,7 @@
 		08CE2BB52285BEF100183A1B /* FeedStoreChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CE2BB42285BEF100183A1B /* FeedStoreChallengeTests.swift */; };
 		DC52AAE625E298AE005BE24B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC52AAE525E298AE005BE24B /* XCTestCase+MemoryLeakTracking.swift */; };
 		DC52AAED25E29F30005BE24B /* FeedStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC52AAEB25E29F30005BE24B /* FeedStore.xcdatamodeld */; };
+		DC52AAF925E2A8C4005BE24B /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC52AAF825E2A8C4005BE24B /* CoreDataFeedStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		08CE2BB42285BEF100183A1B /* FeedStoreChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreChallengeTests.swift; sourceTree = "<group>"; };
 		DC52AAE525E298AE005BE24B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		DC52AAEC25E29F30005BE24B /* FeedStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FeedStore.xcdatamodel; sourceTree = "<group>"; };
+		DC52AAF825E2A8C4005BE24B /* CoreDataFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				08CE2BA52285BCB600183A1B /* FeedStore.swift */,
 				08CE2B8F2285BBD100183A1B /* Info.plist */,
 				DC52AAEB25E29F30005BE24B /* FeedStore.xcdatamodeld */,
+				DC52AAF825E2A8C4005BE24B /* CoreDataFeedStore.swift */,
 			);
 			path = FeedStoreChallenge;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			files = (
 				08CE2BA62285BCB600183A1B /* FeedStore.swift in Sources */,
 				DC52AAED25E29F30005BE24B /* FeedStore.xcdatamodeld in Sources */,
+				DC52AAF925E2A8C4005BE24B /* CoreDataFeedStore.swift in Sources */,
 				08CE2BA82285BCC600183A1B /* LocalFeedImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
