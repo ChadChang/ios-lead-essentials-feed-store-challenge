@@ -66,11 +66,7 @@ public final class CoreDataFeedStore: FeedStore {
 			do {
 				if let cache = try ManagedCache.find(in: context) {
 					completion(.found(
-								feed: cache.feed
-									.compactMap { ($0 as? ManagedFeedImage) }
-									.map {
-										LocalFeedImage(id: $0.id, description: $0.imageDescription, location: $0.location, url: $0.url)
-									},
+								feed: cache.localFeed,
 								timestamp: cache.timestamp))
 				} else {
 					completion(.empty)
@@ -119,6 +115,10 @@ private class ManagedCache: NSManagedObject {
 	@NSManaged var timestamp: Date
 	@NSManaged var feed: NSOrderedSet
 
+	var localFeed: [LocalFeedImage] {
+		feed.compactMap { ($0 as? ManagedFeedImage)?.localImage }
+	}
+
 	static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
 		let request: NSFetchRequest<ManagedCache> = fetchRequest()
 		request.returnsObjectsAsFaults = false
@@ -137,4 +137,8 @@ private class ManagedFeedImage: NSManagedObject {
 	@NSManaged var location: String?
 	@NSManaged var url: URL
 	@NSManaged var cache: ManagedCache
+
+	var localImage: LocalFeedImage {
+		.init(id: id, description: imageDescription, location: location, url: url)
+	}
 }
