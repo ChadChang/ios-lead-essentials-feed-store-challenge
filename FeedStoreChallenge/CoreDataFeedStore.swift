@@ -22,10 +22,7 @@ public final class CoreDataFeedStore: FeedStore {
 		let context = self.backgroundContext
 		context.perform {
 			do {
-				let request: NSFetchRequest<ManagedCache> = ManagedCache.fetchRequest()
-				request.returnsObjectsAsFaults = false
-
-				if let cache = try context.fetch(request).first {
+				if let cache = try ManagedCache.find(in: context) {
 					context.delete(cache)
 					try context.save()
 				}
@@ -40,10 +37,7 @@ public final class CoreDataFeedStore: FeedStore {
 		let context = self.backgroundContext
 		context.perform {
 			do {
-				let request: NSFetchRequest<ManagedCache> = ManagedCache.fetchRequest()
-				request.returnsObjectsAsFaults = false
-
-				if let cache = try context.fetch(request).first {
+				if let cache = try ManagedCache.find(in: context) {
 					context.delete(cache)
 				}
 
@@ -70,10 +64,7 @@ public final class CoreDataFeedStore: FeedStore {
 		let context = self.backgroundContext
 		context.perform {
 			do {
-				let request: NSFetchRequest<ManagedCache> = ManagedCache.fetchRequest()
-				request.returnsObjectsAsFaults = false
-				
-				if let cache = try context.fetch(request).first {
+				if let cache = try ManagedCache.find(in: context) {
 					completion(.found(
 								feed: cache.feed
 									.compactMap { ($0 as? ManagedFeedImage) }
@@ -128,7 +119,13 @@ private class ManagedCache: NSManagedObject {
 	@NSManaged var timestamp: Date
 	@NSManaged var feed: NSOrderedSet
 
-	fileprivate class func fetchRequest() -> NSFetchRequest<ManagedCache> {
+	static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
+		let request: NSFetchRequest<ManagedCache> = fetchRequest()
+		request.returnsObjectsAsFaults = false
+		return try context.fetch(request).first
+	}
+
+	static func fetchRequest() -> NSFetchRequest<ManagedCache> {
 		return NSFetchRequest<ManagedCache>(entityName: entityName)
 	}
 }
