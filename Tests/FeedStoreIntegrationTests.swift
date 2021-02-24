@@ -80,11 +80,15 @@ class FeedStoreIntegrationTests: XCTestCase {
 	}
 	
 	private func setupEmptyStoreState() {
-		
+		deleteStoreData()
 	}
 	
 	private func undoStoreSideEffects() {
-		
+
+	}
+
+	private func deleteStoreData() {
+		try? FileManager.default.removeItem(at: testSpecificStoreURL())
 	}
 
 	private func testSpecificStoreURL() -> URL {
