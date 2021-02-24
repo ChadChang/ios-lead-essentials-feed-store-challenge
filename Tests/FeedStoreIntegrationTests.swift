@@ -71,8 +71,12 @@ class FeedStoreIntegrationTests: XCTestCase {
 	
 	// - MARK: Helpers
 	
-	private func makeSUT() -> FeedStore {
-		fatalError("Must be implemented")
+	private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> FeedStore {
+		let storeBundle = Bundle(for: CoreDataFeedStore.self)
+		let storeUrl = testSpecificStoreURL()
+		let sut = try! CoreDataFeedStore(storeURL: storeUrl, bundle: storeBundle)
+		trackForMemoryLeaks(sut, file: file, line: line)
+		return sut
 	}
 	
 	private func setupEmptyStoreState() {
@@ -82,5 +86,12 @@ class FeedStoreIntegrationTests: XCTestCase {
 	private func undoStoreSideEffects() {
 		
 	}
-	
+
+	private func testSpecificStoreURL() -> URL {
+		cachesDirectory().appendingPathComponent("\(type(of: self)).store")
+	}
+
+	private func cachesDirectory() -> URL {
+		FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+	}
 }
