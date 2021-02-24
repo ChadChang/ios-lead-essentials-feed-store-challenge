@@ -84,7 +84,7 @@ class FeedStoreIntegrationTests: XCTestCase {
 	}
 	
 	private func undoStoreSideEffects() {
-
+		deleteStoreData()
 	}
 
 	private func deleteStoreData() {
